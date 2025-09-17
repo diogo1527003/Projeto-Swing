@@ -1,0 +1,42 @@
+package com.br.pdvpostodecombustivel.domain.entity;
+public class Produto {
+
+    private String nome;
+    private String referencia;
+    private String marca;
+    private String fornecedor;
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getReferencia() {
+        return referencia;
+    }
+
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
+    }
+
+    public String getFornecedor(){
+        return fornecedor;
+    }
+    public void setFornecedor(String fornecedor){
+        this.fornecedor = fornecedor;
+    }
+    public String getMarca(){
+        return marca;
+    }
+    public void setMarca(String marca){
+        this.marca = marca;
+    }
+
+
+    }
+
+
+
+
