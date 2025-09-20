@@ -1,4 +1,4 @@
-package com.br.pdvpostodecombustivel.domain.dto;
+package com.br.pdvpostodecombustivel.api.pessoa.dto;
 
 public record PessoaResponse(
         Long id,
