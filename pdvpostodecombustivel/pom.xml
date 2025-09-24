@@ -71,6 +71,9 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <groupld>org.springdoc</groupld>
+        <artifactld>springdoc-op enapi-starter-webmvc-ui</artifactld>
+        <version>2.6.0</version>
     </dependencies>
 
     <build>
