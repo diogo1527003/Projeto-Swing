@@ -1,4 +1,5 @@
 package com.br.pdvpostodecombustivel.domain.entity;
+
 import com.br.pdvpostodecombustivel.enums.TipoPessoa;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

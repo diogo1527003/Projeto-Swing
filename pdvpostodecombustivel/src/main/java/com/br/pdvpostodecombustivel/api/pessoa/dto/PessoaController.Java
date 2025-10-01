@@ -1,5 +1,6 @@
 package com.br.pdvpostodecombustivel.api.pessoa.dto;
 
+
 import com.br.pdvpostodecombustivel.api.pessoa.dto.PessoaRequest;
 import com.br.pdvpostodecombustivel.api.pessoa.dto.PessoaResponse;
 import org.springframework.data.domain.Page;
@@ -8,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/pessoa")
+@RequestMapping("/api/v1/pessoas")
 public class PessoaController {
 
     private final PessoaService service;
@@ -29,7 +30,7 @@ public class PessoaController {
     }
 
     @GetMapping(params = "cpfCnpj")
-    public PessoaResponse getbyCpf(@RequestParam String cpfCnpj) {
+    public PessoaResponse getByCpf(@RequestParam String cpfCnpj) {
         return service.getByCpfCnpj(cpfCnpj);
     }
 
@@ -37,20 +38,24 @@ public class PessoaController {
     public Page<PessoaResponse> list(@RequestParam(defaultValue = "0") int page,
                                      @RequestParam(defaultValue = "10") int size,
                                      @RequestParam(defaultValue = "id") String sortBy,
-                                     @RequestParam(defaultValue = "ASC") Sort.Direction dir){
+                                     @RequestParam(defaultValue = "ASC") Sort.Direction dir) {
         return service.list(page, size, sortBy, dir);
     }
 
-        @PutMapping("/{id}")
-        public PessoaResponse update(@PathVariable Long id, @RequestBody PessoaRequest req) {
-            return service.update(id,req);
-        }
-
-        @PatchMapping("/{id}")
-        @ResponseStatus(HttpStatus.NO_CONTENT)
-        public void delete(@PathVariable Long id){
-            service.delete(id);
-        }
-
+    @PutMapping("/{id}")
+    public PessoaResponse update(@PathVariable Long id, @RequestBody PessoaRequest req) {
+        return service.update(id, req);
     }
+
+    @PatchMapping("/{id}")
+    public PessoaResponse patch(@PathVariable Long id, @RequestBody PessoaRequest req) {
+        return service.patch(id, req);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
+    }
+}
 

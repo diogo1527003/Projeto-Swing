@@ -1,9 +1,11 @@
 package com.br.pdvpostodecombustivel.api.pessoa.dto;
 
+
 import com.br.pdvpostodecombustivel.api.pessoa.dto.PessoaRequest;
 import com.br.pdvpostodecombustivel.api.pessoa.dto.PessoaResponse;
 import com.br.pdvpostodecombustivel.domain.entity.Pessoa;
 import com.br.pdvpostodecombustivel.domain.repository.PessoaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -16,18 +18,18 @@ public class PessoaService {
     // implementa a interface repository de pessoa
     private final PessoaRepository repository;
 
+
     public PessoaService(PessoaRepository repository) {
         this.repository = repository;
     }
 
     // CREATE
     public PessoaResponse create(PessoaRequest req) {
-        validarUnicidadeCpfCnpj(req.cpfCnpj(), null);
-        Pessoa nova = toEntity(req);
-        return toResponse(repository.save(nova));
+        Pessoa novaPessoa = toEntity(req);
+        return toResponse(repository.save(novaPessoa));
     }
 
-    // READ by ID
+    // READ by ID - validar a utilização desse método
     @Transactional(readOnly = true)
     public PessoaResponse getById(Long id) {
         Pessoa p = repository.findById(id)
@@ -50,7 +52,7 @@ public class PessoaService {
         return repository.findAll(pageable).map(this::toResponse);
     }
 
-    // UPDATE (PUT) - substitui todos os campos
+    // UPDATE  - substitui todos os campos
     public PessoaResponse update(Long id, PessoaRequest req) {
         Pessoa p = repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Pessoa não encontrada. id=" + id));
@@ -107,13 +109,13 @@ public class PessoaService {
                 req.nomeCompleto(),
                 req.cpfCnpj(),
                 req.numeroCtps(),
-                req.dataNascimento()
+                req.dataNascimento(),
+                req.tipoPessoa()
         );
     }
 
     private PessoaResponse toResponse(Pessoa p) {
         return new PessoaResponse(
-                p.getId(),
                 p.getNomeCompleto(),
                 p.getCpfCnpj(),
                 p.getNumeroCtps(),
