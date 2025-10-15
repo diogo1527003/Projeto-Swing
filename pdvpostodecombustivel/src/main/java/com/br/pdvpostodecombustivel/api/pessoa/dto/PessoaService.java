@@ -1,11 +1,8 @@
 package com.br.pdvpostodecombustivel.api.pessoa.dto;
 
 
-import com.br.pdvpostodecombustivel.api.pessoa.dto.PessoaRequest;
-import com.br.pdvpostodecombustivel.api.pessoa.dto.PessoaResponse;
 import com.br.pdvpostodecombustivel.domain.entity.Pessoa;
 import com.br.pdvpostodecombustivel.domain.repository.PessoaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
